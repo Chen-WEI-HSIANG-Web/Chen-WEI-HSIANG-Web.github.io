@@ -3,23 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jack | HR Tech Portfolio</title>
+  <title>Jack — HR × Data × AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
-      --primary: #00558C;
-      --primary-dark: #003f6b;
-      --text: #1f2933;
-      --subtext: #52606d;
-      --bg: #f7f9fb;
-      --white: #ffffff;
-      --border: #d9e2ec;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
-      --max-width: 1120px;
+      --bg: #f8f6f2;
+      --bg-soft: #fcfbf8;
+      --surface: #ffffff;
+      --surface-soft: #f6f3ee;
+      --border: #e4ddd3;
+      --border-light: #eee7dd;
+
+      --ink: #1f2328;
+      --ink-mid: #525b66;
+      --ink-light: #7e8791;
+
+      --primary: #214d72;
+      --primary-2: #2f678f;
+      --accent: #c9866b;
+
+      --shadow: 0 18px 40px rgba(26, 35, 43, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+
+      --max: 1980px;
+      --content: 1480px;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -27,11 +50,14 @@
     }
 
     body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #f7f9fb 0%, #eef4f8 100%);
-      line-height: 1.7;
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(201, 134, 107, 0.10) 0%, transparent 24%),
+        radial-gradient(circle at top right, rgba(33, 77, 114, 0.10) 0%, transparent 22%),
+        linear-gradient(180deg, #fbfaf7 0%, #f6f7f8 100%);
+      line-height: 1.75;
+      overflow-x: hidden;
     }
 
     a {
@@ -39,106 +65,181 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page-shell {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+    }
+
     .container {
-      width: min(var(--max-width), calc(100% - 48px));
+      width: min(var(--content), calc(100% - 72px));
       margin: 0 auto;
     }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 10;
-      backdrop-filter: blur(12px);
-      background: rgba(247, 249, 251, 0.85);
-      border-bottom: 1px solid rgba(217, 226, 236, 0.8);
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(248, 246, 242, 0.82);
+      border-bottom: 1px solid rgba(228, 221, 211, 0.9);
     }
 
     .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
+      padding: 18px 0;
+      gap: 24px;
     }
 
     .brand {
-      font-weight: 700;
-      color: var(--primary-dark);
-      letter-spacing: 0.2px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.03em;
     }
 
     .nav {
       display: flex;
-      gap: 18px;
+      align-items: center;
+      gap: 28px;
       flex-wrap: wrap;
     }
 
     .nav a {
-      font-size: 14px;
-      color: var(--subtext);
+      position: relative;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-light);
       transition: color 0.2s ease;
+      padding-bottom: 4px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width 0.25s ease;
     }
 
     .nav a:hover {
       color: var(--primary);
     }
 
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--primary);
+      border-radius: 999px;
+      color: var(--primary);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
     .hero {
-      padding: 72px 0 48px;
+      padding: 84px 0 64px;
+      position: relative;
     }
 
     .hero-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 56px;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 36px;
-      align-items: center;
+      gap: 38px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 40px;
     }
 
     .eyebrow {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 6px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
       border-radius: 999px;
-      background: #eaf3f9;
+      background: #f6eee8;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(60px, 7vw, 104px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 em {
       color: var(--primary);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
+      font-style: italic;
+      font-weight: 500;
     }
 
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(36px, 6vw, 58px);
-      line-height: 1.1;
-      color: var(--primary-dark);
+    .hero-subtitle {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(24px, 2vw, 34px);
+      line-height: 1.3;
+      color: var(--ink-light);
+      margin-bottom: 28px;
+      font-style: italic;
     }
 
-    .hero p {
-      margin: 0 0 24px;
-      font-size: 18px;
-      color: var(--subtext);
-      max-width: 640px;
+    .hero-desc {
+      max-width: 760px;
+      font-size: 17px;
+      color: var(--ink-mid);
+      margin-bottom: 30px;
+    }
+
+    .hero-desc strong {
+      color: var(--ink);
+      font-weight: 600;
     }
 
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .tag {
-      padding: 8px 14px;
+      padding: 9px 14px;
       border-radius: 999px;
-      background: #f2f6fa;
-      border: 1px solid #dce7f0;
-      color: var(--primary-dark);
-      font-size: 14px;
-      font-weight: 600;
+      border: 1px solid #e7ddd2;
+      background: #fffaf6;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
     }
 
     .hero-actions {
@@ -151,451 +252,945 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 148px;
-      padding: 12px 18px;
+      min-width: 160px;
+      padding: 13px 24px;
       border-radius: 999px;
-      font-weight: 700;
       font-size: 14px;
+      font-weight: 600;
       transition: all 0.2s ease;
-      border: 1px solid transparent;
     }
 
     .btn-primary {
       background: var(--primary);
-      color: var(--white);
-      box-shadow: 0 10px 20px rgba(0, 85, 140, 0.16);
+      color: #fff;
+      border: 1px solid var(--primary);
+      box-shadow: 0 10px 22px rgba(33, 77, 114, 0.18);
     }
 
     .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
+      background: var(--primary-2);
+      border-color: var(--primary-2);
+      transform: translateY(-2px);
     }
 
-    .btn-secondary {
-      background: #eef6fb;
+    .btn-outline {
+      background: #fff;
       color: var(--primary);
-      border-color: #d7e7f3;
+      border: 1px solid #d8cec2;
     }
 
-    .btn-secondary:hover {
-      background: #e2f0f8;
-      transform: translateY(-1px);
+    .btn-outline:hover {
+      background: #faf6f1;
+      transform: translateY(-2px);
     }
 
     .hero-side {
-      background: linear-gradient(180deg, #00558c 0%, #003f6b 100%);
-      color: white;
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 16px 30px rgba(0, 63, 107, 0.22);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
-    .hero-side h3 {
-      margin-top: 0;
+    .photo-card,
+    .focus-card,
+    .about-card,
+    .proj-item,
+    .dir-card,
+    .contact-wrap {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,244,238,0.9) 100%);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+    }
+
+    .photo-card,
+    .focus-card {
+      padding: 22px;
+    }
+
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid #d9cfc3;
+      background: linear-gradient(135deg, rgba(33,77,114,0.08), rgba(201,134,107,0.12));
       margin-bottom: 16px;
-      font-size: 20px;
     }
 
-    .hero-side ul {
-      margin: 0;
-      padding-left: 18px;
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .hero-side li {
-      margin-bottom: 10px;
-      color: rgba(255, 255, 255, 0.92);
+    .photo-note {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--border-light);
+    }
+
+    .photo-note h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .photo-note p {
+      font-size: 14px;
+      color: var(--ink-mid);
+    }
+
+    .focus-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .focus-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .focus-item {
+      display: flex;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    .focus-item:last-child {
+      border-bottom: none;
+    }
+
+    .focus-num {
+      width: 24px;
+      flex-shrink: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 18px;
+      color: #bfb4a8;
     }
 
     section {
-      padding: 20px 0 40px;
+      padding: 84px 0;
+      border-top: 1px solid rgba(232, 226, 218, 0.65);
     }
 
     .section-head {
-      margin-bottom: 22px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      margin-bottom: 42px;
+      align-items: start;
+    }
+
+    .section-meta {
+      padding-top: 8px;
+    }
+
+    .section-num {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      color: var(--ink-light);
     }
 
     .section-label {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
     }
 
-    h2 {
-      margin: 0;
-      font-size: 30px;
-      color: var(--primary-dark);
+    .section-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 3vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      color: var(--ink);
     }
 
-    .section-intro {
-      margin-top: 12px;
+    .section-sub {
       max-width: 760px;
-      color: var(--subtext);
-      font-size: 16px;
+      color: var(--ink-mid);
+      font-size: 15px;
     }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 24px;
     }
 
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+    .about-card {
       box-shadow: var(--shadow);
-      padding: 28px;
+      padding: 32px;
     }
 
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 14px;
-      color: var(--primary-dark);
-      font-size: 20px;
+    .about-card-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 18px;
     }
 
-    .card p {
-      margin: 0;
-      color: var(--subtext);
+    .about-card-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
     }
 
-    .focus-list {
-      display: grid;
-      gap: 12px;
+    .about-card p {
+      font-size: 15px;
+      color: var(--ink-mid);
     }
 
-    .focus-item {
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: #f7fafc;
-      border: 1px solid #e6edf5;
-      color: var(--text);
+    .about-card strong {
+      color: var(--ink);
       font-weight: 600;
     }
 
-    .projects-grid {
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skill-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 14px;
+      color: var(--ink-mid);
+    }
+
+    .skill-row:last-child {
+      border-bottom: none;
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .proj-item {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .project-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 22px;
+      grid-template-columns: 220px 1fr auto;
+      gap: 34px;
+      padding: 36px;
       box-shadow: var(--shadow);
-      padding: 28px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+    .proj-item:hover {
+      background: #fbf7f2;
+      transform: translateY(-2px);
     }
 
-    .project-type {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 999px;
-      background: #edf5fb;
+    .proj-type {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .proj-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .proj-desc {
+      font-size: 15px;
+      color: var(--ink-mid);
+      margin-bottom: 16px;
+    }
+
+    .proj-impact {
+      padding-left: 14px;
+      border-left: 2px solid var(--primary);
       color: var(--primary);
-      font-weight: 700;
-      letter-spacing: 0.2px;
+      font-size: 13px;
+      margin-bottom: 16px;
     }
 
-    .project-card h3 {
-      margin: 0 0 12px;
-      font-size: 20px;
-      color: var(--primary-dark);
-    }
-
-    .project-card p {
-      margin: 0 0 18px;
-      color: var(--subtext);
-      min-height: 96px;
-    }
-
-    .project-meta {
+    .proj-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .meta-pill {
-      padding: 7px 10px;
+    .proj-tag {
+      padding: 5px 10px;
       border-radius: 999px;
-      background: #f3f7fa;
-      border: 1px solid #e2e8f0;
+      background: #edf3f7;
+      color: var(--primary);
       font-size: 12px;
-      color: var(--subtext);
-      font-weight: 600;
+      font-weight: 500;
+    }
+
+    .proj-arrow {
+      font-size: 22px;
+      color: #c3b8ac;
+      transition: all 0.2s ease;
+    }
+
+    .proj-item:hover .proj-arrow {
+      color: var(--primary);
+      transform: translateX(4px);
     }
 
     .direction-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
     }
 
-    .direction-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
+    .dir-card {
+      padding: 32px;
       box-shadow: var(--shadow);
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
-    .direction-card h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      color: var(--primary-dark);
+    .dir-card:hover {
+      background: #fbf7f2;
+      transform: translateY(-2px);
     }
 
-    .direction-card p {
-      margin: 0;
-      color: var(--subtext);
+    .dir-num {
+      font-family: "Cormorant Garamond", Georgia, serif;
       font-size: 14px;
+      color: var(--ink-light);
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .dir-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 26px;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .dir-body {
+      font-size: 14px;
+      color: var(--ink-mid);
+    }
+
+    .contact-wrap {
+      background: linear-gradient(135deg, #234f74 0%, #1c3f5a 100%);
+      color: #fff;
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: 0 18px 40px rgba(28, 63, 90, 0.22);
+      border: none;
+    }
+
+    .contact-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      margin-bottom: 22px;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 3vw, 50px);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .contact-text p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.92);
+      transition: all 0.2s ease;
+    }
+
+    .contact-link:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-2px);
+    }
+
+    .contact-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.68);
+      margin-top: 10px;
     }
 
     .footer {
-      padding: 24px 0 48px;
-      color: var(--subtext);
-      font-size: 14px;
-      text-align: center;
+      padding: 28px 0 44px;
+      color: var(--ink-light);
+      font-size: 13px;
     }
 
-    @media (max-width: 980px) {
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    /* Load-in animation */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .eyebrow,
+    .hero h1,
+    .hero-subtitle,
+    .hero-desc,
+    .hero-tags,
+    .hero-actions,
+    .photo-card,
+    .focus-card,
+    .about-card,
+    .proj-item,
+    .dir-card,
+    .contact-wrap {
+      opacity: 0;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .eyebrow { animation-delay: 0.00s; }
+    .hero h1 { animation-delay: 0.07s; }
+    .hero-subtitle { animation-delay: 0.13s; }
+    .hero-desc { animation-delay: 0.19s; }
+    .hero-tags { animation-delay: 0.24s; }
+    .hero-actions { animation-delay: 0.29s; }
+    .photo-card { animation-delay: 0.15s; }
+    .focus-card { animation-delay: 0.22s; }
+
+    #about .about-card:nth-child(1) { animation-delay: 0.34s; }
+    #about .about-card:nth-child(2) { animation-delay: 0.40s; }
+
+    #projects .proj-item:nth-child(1) { animation-delay: 0.46s; }
+    #projects .proj-item:nth-child(2) { animation-delay: 0.52s; }
+    #projects .proj-item:nth-child(3) { animation-delay: 0.58s; }
+
+    #direction .dir-card:nth-child(1) { animation-delay: 0.64s; }
+    #direction .dir-card:nth-child(2) { animation-delay: 0.70s; }
+    #direction .dir-card:nth-child(3) { animation-delay: 0.76s; }
+    #direction .dir-card:nth-child(4) { animation-delay: 0.82s; }
+
+    #contact .contact-wrap { animation-delay: 0.88s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .eyebrow,
+      .hero h1,
+      .hero-subtitle,
+      .hero-desc,
+      .hero-tags,
+      .hero-actions,
+      .photo-card,
+      .focus-card,
+      .about-card,
+      .proj-item,
+      .dir-card,
+      .contact-wrap {
+        opacity: 1;
+        animation: none;
+      }
+    }
+
+    @media (max-width: 1280px) {
       .hero-card,
       .about-grid,
-      .projects-grid,
+      .contact-top {
+        grid-template-columns: 1fr;
+      }
+
+      .proj-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .proj-arrow {
+        display: none;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .container {
+        width: min(var(--content), calc(100% - 48px));
+      }
+    }
+
+    @media (max-width: 900px) {
       .direction-grid {
         grid-template-columns: 1fr;
       }
 
-      .project-card p {
-        min-height: auto;
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
     @media (max-width: 640px) {
       .container {
-        width: min(var(--max-width), calc(100% - 28px));
+        width: calc(100% - 24px);
       }
 
-      .topbar-inner {
-        align-items: flex-start;
-        gap: 12px;
-        flex-direction: column;
+      .nav {
+        gap: 16px;
       }
 
       .hero {
-        padding-top: 40px;
+        padding: 54px 0 40px;
       }
 
       .hero-card,
-      .card,
-      .project-card,
-      .direction-card {
+      .about-card,
+      .dir-card,
+      .contact-wrap,
+      .photo-card,
+      .focus-card {
         padding: 22px;
       }
 
-      h2 {
-        font-size: 26px;
+      .proj-item {
+        padding: 24px;
       }
 
-      .hero p {
-        font-size: 16px;
+      .hero h1 {
+        font-size: 56px;
+      }
+
+      .hero-subtitle {
+        font-size: 24px;
       }
     }
+	
+	.focus-section-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,244,238,0.9) 100%);
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+}
+
+#focus .focus-section-card {
+  opacity: 0;
+  animation: fadeUp 0.7s ease both;
+  animation-delay: 0.34s;
+}
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <div class="brand">Jack | HR Tech Portfolio</div>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#direction">Direction</a>
-      </nav>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">Jack</div>
+
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#direction">Direction</a>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card">
+            <div>
+              <div class="eyebrow">Personal Brand Homepage</div>
+
+              <h1>Jack.<br><em>HR Systems & Analytics Operator</em></h1>
+
+              <p class="hero-subtitle">
+                Bridging HR operations, systems, and data
+				to make people processes structured, scalable, and sustainable.
+              </p>
+
+              <p class="hero-desc">
+				I started from HR practice, but my work gradually expanded into
+			<strong>HR systems, analytics, and governance design</strong>.
+				I focus on turning complex, experience-driven processes into
+				clearer structures that teams can actually follow, scale, and sustain.
+			</p>
+
+              <div class="hero-tags">
+                <span class="tag">HR</span>
+                <span class="tag">HRIS</span>
+                <span class="tag">People Analytics</span>
+                <span class="tag">Process Design</span>
+                <span class="tag">System Builder</span>
+                <span class="tag">AI Collaboration</span>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#projects">View My Work</a>
+                <a class="btn btn-outline" href="#contact">Get in Touch</a>
+              </div>
+            </div>
+
+            <aside class="hero-side">
+              <div class="photo-card">
+                <div class="photo-frame">
+                  <img
+                    src="https://chen-wei-hsiang-web.github.io/PersonalPhoto.PNG"
+                    alt="Jack personal photo"
+                    class="profile-photo"
+                  />
+                </div>
+
+                <div class="photo-note">
+                  <h3>More than a function</h3>
+                  <p>
+                    I do not see HR as paperwork alone. I see it as a system that can be designed,
+                    improved, and made more human at the same time.
+                  </p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+	  
+	  <section id="focus">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-meta">
+        <span class="section-num">01 /</span>
+        <span class="section-label">Focus</span>
+      </div>
+
+      <div>
+        <h2 class="section-title">Current focus</h2>
+        <p class="section-sub">
+          The problem spaces I am currently working on — where HR complexity,
+			system constraints, and organizational scale intersect.
+        </p>
+      </div>
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <div class="hero-card">
-          <div>
-            <span class="eyebrow">HR × Systems × Data</span>
-            <h1>Hi, I'm Jack</h1>
-            <p>
-              I build practical HR solutions by connecting people operations, system design,
-              and data thinking. My work focuses on turning complex HR processes into clearer,
-              scalable, and more structured operating frameworks.
-            </p>
-
-            <div class="hero-tags">
-              <span class="tag">HR</span>
-              <span class="tag">HRIS</span>
-              <span class="tag">People Analytics</span>
-              <span class="tag">Performance Management</span>
-              <span class="tag">System Builder</span>
-            </div>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#projects">View Projects</a>
-              <a class="btn btn-secondary" href="#about">Learn More</a>
-            </div>
-          </div>
-
-          <aside class="hero-side">
-            <h3>Current Focus</h3>
-            <ul>
-              <li>Performance management and calibration governance</li>
-              <li>Promotion workflow design and project coordination</li>
-              <li>HR analytics and dashboard logic development</li>
-              <li>SuccessFactors system operations and framework building</li>
-            </ul>
-          </aside>
-        </div>
+    <div class="focus-section-card">
+      <div class="focus-list">
+       <div class="focus-item">
+		<span class="focus-num">01</span>
+			Making performance management and calibration more governable and consistent across units
+		</div>
+		<div class="focus-item">
+		<span class="focus-num">02</span>
+			Structuring promotion workflows to reduce ambiguity and improve decision clarity
+		</div>
+		<div class="focus-item">
+		<span class="focus-num">03</span>
+		Translating HR data into usable insights through dashboard logic and metric design
+		</div>
+		<div class="focus-item">
+		<span class="focus-num">04</span>
+		Bridging HR operations with system capabilities in SuccessFactors and internal tools
+		</div>
       </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-label">About</span>
-          <h2>From HR practice to HR Tech thinking</h2>
-          <p class="section-intro">
-            My background started in HR operations, but over time my work naturally expanded into
-            systems, governance, analytics, and process design. I am especially interested in the
-            space where HR expertise meets structured problem-solving and digital tools.
-          </p>
-        </div>
-
-        <div class="about-grid">
-          <div class="card">
-            <h3>What I bring</h3>
-            <p>
-              I work at the intersection of HR execution and system thinking. That means not only
-              operating processes, but also redesigning them, clarifying decision logic, improving
-              visibility with data, and building more sustainable internal frameworks for teams.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Core strengths</h3>
-            <div class="focus-list">
-              <div class="focus-item">HR process design and governance</div>
-              <div class="focus-item">HRIS operations and system logic</div>
-              <div class="focus-item">People data analysis and KPI interpretation</div>
-              <div class="focus-item">Cross-functional project coordination</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-label">Projects</span>
-          <h2>Featured work</h2>
-          <p class="section-intro">
-            These projects reflect how I approach HR work: not only as daily operations, but as
-            systems that can be designed, improved, and scaled.
-          </p>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project-card">
-            <span class="project-type">System Design</span>
-            <h3>HR Knowledge Hub</h3>
-            <p>
-              Built an internal HTML/CSS knowledge platform to organize HR project logic, SOPs,
-              templates, and system know-how into a clearer handover structure.
-            </p>
-            <div class="project-meta">
-              <span class="meta-pill">HTML/CSS</span>
-              <span class="meta-pill">Knowledge Transfer</span>
-              <span class="meta-pill">Internal Framework</span>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <span class="project-type">Performance Project</span>
-            <h3>Calibration Framework</h3>
-            <p>
-              Designed and coordinated multi-round calibration operations, supporting governance,
-              completion tracking, and execution alignment across business units.
-            </p>
-            <div class="project-meta">
-              <span class="meta-pill">Performance</span>
-              <span class="meta-pill">Governance</span>
-              <span class="meta-pill">Project PM</span>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <span class="project-type">People Analytics</span>
-            <h3>HR Analytics Dashboard</h3>
-            <p>
-              Developed dashboard logic for workforce trends, turnover, retention, and structural
-              analysis to strengthen HR visibility and decision support.
-            </p>
-            <div class="project-meta">
-              <span class="meta-pill">Dashboard</span>
-              <span class="meta-pill">SQL</span>
-              <span class="meta-pill">Story Report</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="direction">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-label">Direction</span>
-          <h2>Where I am heading</h2>
-          <p class="section-intro">
-            I am continuing to move toward HR Tech, with growing interest in system design,
-            people analytics, automation, and digital operating models for HR teams.
-          </p>
-        </div>
-
-        <div class="direction-grid">
-          <div class="direction-card">
-            <h3>HR Tech</h3>
-            <p>Building stronger bridges between HR domain knowledge and digital solutions.</p>
-          </div>
-          <div class="direction-card">
-            <h3>Analytics</h3>
-            <p>Using data models and dashboards to make HR decisions more visible and actionable.</p>
-          </div>
-          <div class="direction-card">
-            <h3>Systems</h3>
-            <p>Designing scalable frameworks instead of relying only on manual execution.</p>
-          </div>
-          <div class="direction-card">
-            <h3>Automation</h3>
-            <p>Exploring ways to simplify recurring HR workflows through smarter process design.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      © 2026 Jack | HR Tech Portfolio
     </div>
-  </footer>
+  </div>
+</section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">02 /</span>
+              <span class="section-label">About</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">From HR execution to system thinking</h2>
+              <p class="section-sub">
+                My journey started from HR execution, but the more I worked, the more I found myself
+                drawn to structure: how processes are built, how systems support people, and how data
+                can improve clarity and decisions.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-card">
+              <div class="about-card-label">How I work</div>
+             <p>
+			I started from HR execution, working closely with performance, promotion,
+			and day-to-day people operations.
+			Over time, I found myself repeatedly dealing with the same type of problems:
+				processes that relied too much on individual experience,
+				systems that could not fully support business needs,
+				and data that existed but was difficult to interpret or act on.
+			This led me to gradually shift from execution to structure —
+				focusing on how HR processes can be redesigned into
+				<strong>clearer, more scalable, and more sustainable systems</strong>.
+			</p>
+            </div>
+
+            <div class="about-card">
+              <div class="about-card-label">Core capabilities</div>
+              <div class="skills-list">
+                <div class="skill-row"><span class="skill-dot"></span>HRIS operations and system logic</div>
+                <div class="skill-row"><span class="skill-dot"></span>Performance management and calibration governance</div>
+                <div class="skill-row"><span class="skill-dot"></span>People analytics and KPI dashboard design</div>
+                <div class="skill-row"><span class="skill-dot"></span>HR process redesign and internal framework building</div>
+                <div class="skill-row"><span class="skill-dot"></span>AI-assisted workflow thinking</div>
+                <div class="skill-row"><span class="skill-dot"></span>Cross-functional project coordination</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">03 /</span>
+              <span class="section-label">Projects</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">Selected work</h2>
+              <p class="section-sub">
+                These projects reflect how I think about HR work: not only as execution,
+                but as something that can be redesigned into systems, products, and better operating models.
+              </p>
+            </div>
+          </div>
+
+          <div class="projects-list">
+            <article class="proj-item">
+              <div>
+                <div class="proj-type">System Design</div>
+                <div class="proj-title">HR Knowledge Hub</div>
+              </div>
+
+              <div>
+                <p class="proj-desc">
+                  Built an internal HTML/CSS knowledge platform to organize HR project logic,
+                  SOPs, templates, and system know-how into a clearer handover structure.
+                </p>
+                <div class="proj-impact">
+                  Reduced knowledge dependency on individuals and made handover more sustainable.
+                </div>
+                <div class="proj-tags">
+                  <span class="proj-tag">HTML / CSS</span>
+                  <span class="proj-tag">Knowledge Transfer</span>
+                  <span class="proj-tag">Internal Framework</span>
+                </div>
+              </div>
+
+              <div class="proj-arrow">→</div>
+            </article>
+
+            <article class="proj-item">
+              <div>
+                <div class="proj-type">Performance Project</div>
+                <div class="proj-title">Calibration Framework</div>
+              </div>
+
+              <div>
+                <p class="proj-desc">
+                  Designed and coordinated multi-round calibration operations, supporting governance,
+                  completion tracking, and execution alignment across business units.
+                </p>
+                <div class="proj-impact">
+                  Standardized execution rhythm and improved ownership visibility across units.
+                </div>
+                <div class="proj-tags">
+                  <span class="proj-tag">Performance</span>
+                  <span class="proj-tag">Governance</span>
+                  <span class="proj-tag">Project PM</span>
+                </div>
+              </div>
+
+              <div class="proj-arrow">→</div>
+            </article>
+
+            <article class="proj-item">
+              <div>
+                <div class="proj-type">People Analytics</div>
+                <div class="proj-title">HR Analytics Dashboard</div>
+              </div>
+
+              <div>
+                <p class="proj-desc">
+                  Developed dashboard logic for workforce trends, turnover, retention, and structural
+                  analysis to strengthen HR visibility and decision support.
+                </p>
+                <div class="proj-impact">
+                  Shifted HR metrics from passive reporting toward clearer decision support.
+                </div>
+                <div class="proj-tags">
+                  <span class="proj-tag">Dashboard</span>
+                  <span class="proj-tag">SQL</span>
+                  <span class="proj-tag">Story Report</span>
+                </div>
+              </div>
+
+              <div class="proj-arrow">→</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="direction">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">04 /</span>
+              <span class="section-label">Direction</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">Where I am heading</h2>
+              <p class="section-sub">
+                I am moving toward roles that operate at the intersection of HR, systems, and analytics —
+				with a focus on designing scalable people processes and internal platforms.
+              </p>
+            </div>
+          </div>
+
+          <div class="direction-grid">
+            <div class="dir-card">
+              <div class="dir-num">01 —</div>
+			  <div class="dir-title">HR Tech & Systems</div>
+			  <div class="dir-body">
+				Deepening my ability to translate HR needs into system logic and product-like solutions.
+			   </div>
+            </div>
+
+            <div class="dir-card">
+              <div class="dir-num">02 —</div>
+              <div class="dir-title">People Analytics</div>
+              <div class="dir-body">
+                Building stronger connections between data, interpretation, and real HR decisions.
+              </div>
+            </div>
+
+            <div class="dir-card">
+              <div class="dir-num">03 —</div>
+              <div class="dir-title">Process & Governance</div>
+              <div class="dir-body">
+                Designing structures that reduce ambiguity and make complex processes easier to operate.
+              </div>
+            </div>
+
+            <div class="dir-card">
+              <div class="dir-num">04 —</div>
+              <div class="dir-title">Toward Systems Builder</div>
+              <div class="dir-body">
+                Evolving from operating systems to designing how people systems should be built.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="contact-wrap">
+            <div class="contact-top">
+              <div class="contact-text">
+                <h2 class="contact-title">Let’s connect.</h2>
+                <p>
+                  I am particularly interested in opportunities related to
+				  HR systems, people analytics, and HR tech development —
+				  especially in environments where structure, scale, and system thinking matter.
+                </p>
+              </div>
+
+              <div class="contact-links">
+                <a class="contact-link" href="mailto:jack118699@gmail.com">
+                  Email
+                </a>
+                <a class="contact-link" href="https://github.com/Chen-WEI-HSIANG-Web" target="_blank">
+                  GitHub
+                </a>
+                <a class="contact-link" href="https://www.linkedin.com/in/weihsiang-chen-6b7248240/?skipRedirect=true" target="_blank">
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-note">
+              Based in Taiwan · Open to conversations on HR Tech, HRIS, people analytics, and future career development.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-logo">Jack</div>
+        <div>© 2026 — HR × Systems × Data</div>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
