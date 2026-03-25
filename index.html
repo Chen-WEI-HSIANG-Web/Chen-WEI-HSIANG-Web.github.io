@@ -686,6 +686,12 @@
       color: var(--primary);
     }
 
+    a.proj-item {
+  display: grid;   /* 保持你原本 layout */
+  text-decoration: none;
+  color: inherit;
+}
+
     /* Load-in animation */
     @keyframes fadeUp {
       from {
@@ -1023,8 +1029,8 @@
           </div>
 
           <div class="projects-list">
-            <article class="proj-item">
-              <div>
+              <a href="projects/knowledge-hub/index.html" class="proj-item">
+		<div>
                 <div class="proj-type">System Design</div>
                 <div class="proj-title">HR Knowledge Hub</div>
               </div>
@@ -1045,7 +1051,8 @@
               </div>
 
               <div class="proj-arrow">→</div>
-            </article>
+	      </a>
+            
 
             <article class="proj-item">
               <div>
