@@ -2,155 +2,964 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HR Knowledge Hub | Jack</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
+    :root {
+      --bg: #f8f6f2;
+      --bg-soft: #fcfbf8;
+      --surface: #ffffff;
+      --surface-soft: #f6f3ee;
+      --border: #e4ddd3;
+      --border-light: #eee7dd;
+
+      --ink: #1f2328;
+      --ink-mid: #525b66;
+      --ink-light: #7e8791;
+
+      --primary: #214d72;
+      --primary-2: #2f678f;
+      --accent: #c9866b;
+
+      --shadow: 0 18px 40px rgba(26, 35, 43, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+
+      --max: 1980px;
+      --content: 1480px;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: #f7f9fb;
-      color: #1f2a32;
-      line-height: 1.7;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(201, 134, 107, 0.10) 0%, transparent 24%),
+        radial-gradient(circle at top right, rgba(33, 77, 114, 0.10) 0%, transparent 22%),
+        linear-gradient(180deg, #fbfaf7 0%, #f6f7f8 100%);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
     }
 
     .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
+      width: min(var(--content), calc(100% - 72px));
+      margin: 0 auto;
     }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(248, 246, 242, 0.82);
+      border-bottom: 1px solid rgba(228, 221, 211, 0.9);
     }
 
-    h2 {
-      margin-top: 50px;
-      border-left: 4px solid #00558C;
-      padding-left: 12px;
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 24px;
     }
 
-    p {
-      color: #4a5560;
+    .brand {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.03em;
     }
 
-    .tag {
-      display: inline-block;
-      margin-right: 8px;
-      padding: 6px 12px;
-      background: #eef6fb;
-      color: #00558C;
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      position: relative;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      transition: color 0.2s ease;
+      padding-bottom: 4px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width 0.25s ease;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--primary);
+      border-radius: 999px;
+      color: var(--primary);
       font-size: 12px;
-      border-radius: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
     }
 
-    .box {
-      background: white;
-      border: 1px solid #e3e8ee;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
+    .nav-cta:hover {
+      background: var(--primary);
+      color: #fff;
     }
 
-    .highlight {
-      border-left: 4px solid #00558C;
-      padding-left: 12px;
-      color: #00558C;
+    .hero {
+      padding: 84px 0 64px;
+      position: relative;
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 38px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 40px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #f6eee8;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(54px, 6vw, 92px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 em {
+      color: var(--primary);
+      font-style: italic;
       font-weight: 500;
     }
 
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: #00558C;
-      text-decoration: none;
-      font-size: 14px;
+    .hero-subtitle {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(24px, 2vw, 34px);
+      line-height: 1.3;
+      color: var(--ink-light);
+      margin-bottom: 28px;
+      font-style: italic;
     }
 
-    .back-btn:hover {
-      text-decoration: underline;
+    .hero-desc {
+      max-width: 760px;
+      font-size: 17px;
+      color: var(--ink-mid);
+      margin-bottom: 30px;
+    }
+
+    .hero-desc strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .tag {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid #e7ddd2;
+      background: #fffaf6;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: 1px solid var(--primary);
+      box-shadow: 0 10px 22px rgba(33, 77, 114, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-2);
+      border-color: var(--primary-2);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid #d8cec2;
+    }
+
+    .btn-outline:hover {
+      background: #faf6f1;
+      transform: translateY(-2px);
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .summary-card,
+    .detail-card,
+    .contact-wrap {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,244,238,0.9) 100%);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+    }
+
+    .summary-card,
+    .detail-card {
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card {
+      padding: 22px;
+    }
+
+    .summary-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .summary-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .summary-item {
+      display: flex;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .summary-num {
+      width: 24px;
+      flex-shrink: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 18px;
+      color: #bfb4a8;
+    }
+
+    section {
+      padding: 84px 0;
+      border-top: 1px solid rgba(232, 226, 218, 0.65);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      margin-bottom: 42px;
+      align-items: start;
+    }
+
+    .section-meta {
+      padding-top: 8px;
+    }
+
+    .section-num {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      color: var(--ink-light);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 3vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .section-sub {
+      max-width: 760px;
+      color: var(--ink-mid);
+      font-size: 15px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .detail-card {
+      padding: 32px;
+    }
+
+    .detail-card-wide {
+      grid-column: 1 / -1;
+    }
+
+    .detail-card-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .detail-card-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
+
+    .detail-card p,
+    .detail-card li {
+      font-size: 15px;
+      color: var(--ink-mid);
+    }
+
+    .detail-card strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-left: 20px;
+    }
+
+    .detail-list li {
+      margin-left: 4px;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .impact-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,244,238,0.9) 100%);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .impact-card:hover {
+      background: #fbf7f2;
+      transform: translateY(-2px);
+    }
+
+    .impact-num {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 16px;
+      color: var(--ink-light);
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .impact-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .impact-body {
+      font-size: 14px;
+      color: var(--ink-mid);
+    }
+
+    .contact-wrap {
+      background: linear-gradient(135deg, #234f74 0%, #1c3f5a 100%);
+      color: #fff;
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: 0 18px 40px rgba(28, 63, 90, 0.22);
+      border: none;
+    }
+
+    .contact-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      margin-bottom: 22px;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 3vw, 50px);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .contact-text p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.92);
+      transition: all 0.2s ease;
+    }
+
+    .contact-link:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-2px);
+    }
+
+    .contact-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.68);
+      margin-top: 10px;
+    }
+
+    .footer {
+      padding: 28px 0 44px;
+      color: var(--ink-light);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .eyebrow,
+    .hero h1,
+    .hero-subtitle,
+    .hero-desc,
+    .hero-tags,
+    .hero-actions,
+    .summary-card,
+    .detail-card,
+    .impact-card,
+    .contact-wrap {
+      opacity: 0;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .eyebrow { animation-delay: 0.00s; }
+    .hero h1 { animation-delay: 0.07s; }
+    .hero-subtitle { animation-delay: 0.13s; }
+    .hero-desc { animation-delay: 0.19s; }
+    .hero-tags { animation-delay: 0.24s; }
+    .hero-actions { animation-delay: 0.29s; }
+    .summary-card { animation-delay: 0.22s; }
+
+    #overview .detail-card:nth-child(1) { animation-delay: 0.34s; }
+    #overview .detail-card:nth-child(2) { animation-delay: 0.40s; }
+
+    #design .detail-card:nth-child(1) { animation-delay: 0.46s; }
+    #design .detail-card:nth-child(2) { animation-delay: 0.52s; }
+
+    #impact .impact-card:nth-child(1) { animation-delay: 0.58s; }
+    #impact .impact-card:nth-child(2) { animation-delay: 0.64s; }
+    #impact .impact-card:nth-child(3) { animation-delay: 0.70s; }
+
+    #reflection .detail-card { animation-delay: 0.76s; }
+    #contact .contact-wrap { animation-delay: 0.82s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .eyebrow,
+      .hero h1,
+      .hero-subtitle,
+      .hero-desc,
+      .hero-tags,
+      .hero-actions,
+      .summary-card,
+      .detail-card,
+      .impact-card,
+      .contact-wrap {
+        opacity: 1;
+        animation: none;
+      }
+    }
+
+    @media (max-width: 1280px) {
+      .hero-card,
+      .detail-grid,
+      .contact-top,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .container {
+        width: min(var(--content), calc(100% - 48px));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .nav {
+        gap: 16px;
+      }
+
+      .hero {
+        padding: 54px 0 40px;
+      }
+
+      .hero-card,
+      .summary-card,
+      .detail-card,
+      .impact-card,
+      .contact-wrap {
+        padding: 22px;
+      }
+
+      .hero h1 {
+        font-size: 56px;
+      }
+
+      .hero-subtitle {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
-
 <body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a href="../../Home-index.html" class="brand">Jack</a>
 
-<div class="container">
+        <nav class="nav">
+          <a href="#overview">Overview</a>
+          <a href="#design">Design</a>
+          <a href="#impact">Impact</a>
+          <a href="../../Home-index.html" class="nav-cta">Back Home</a>
+        </nav>
+      </div>
+    </header>
 
-  <a href="../../index.html" class="back-btn">← Back to Home</a>
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card">
+            <div>
+              <div class="eyebrow">System Design Project</div>
 
-  <h1>HR Knowledge Hub</h1>
-  <p>Building a structured HR knowledge system to replace fragmented experience-based operations.</p>
+              <h1>HR<br><em>Knowledge Hub</em></h1>
 
-  <div>
-    <span class="tag">HTML / CSS</span>
-    <span class="tag">Knowledge Management</span>
-    <span class="tag">System Design</span>
+              <p class="hero-subtitle">
+                Turning fragmented HR know-how into a structured, reusable internal platform.
+              </p>
+
+              <p class="hero-desc">
+                This project started from a simple but recurring problem:
+                <strong>critical HR knowledge often lived in people, scattered files, and past conversations</strong>.
+                I built the Knowledge Hub as a static HTML/CSS platform to organize project logic,
+                SOPs, templates, and system understanding into a structure that others could actually navigate and continue.
+              </p>
+
+              <div class="hero-tags">
+                <span class="tag">HTML / CSS</span>
+                <span class="tag">Knowledge Transfer</span>
+                <span class="tag">HR Operations</span>
+                <span class="tag">System Design</span>
+                <span class="tag">Internal Framework</span>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#overview">View Project</a>
+                <a class="btn btn-outline" href="../../Home-index.html">Back to Home</a>
+              </div>
+            </div>
+
+            <aside class="hero-side">
+              <div class="summary-card">
+                <div class="summary-label">Project Summary</div>
+                <div class="summary-list">
+                  <div class="summary-item">
+                    <span class="summary-num">01</span>
+                    Built as a static internal site to preserve HR project and system knowledge
+                  </div>
+                  <div class="summary-item">
+                    <span class="summary-num">02</span>
+                    Focused on SOP clarity, handover continuity, and role-based navigation
+                  </div>
+                  <div class="summary-item">
+                    <span class="summary-num">03</span>
+                    Structured to support both operational HR and system-oriented HRIS users
+                  </div>
+                  <div class="summary-item">
+                    <span class="summary-num">04</span>
+                    Designed to scale by project, module, and future documentation needs
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">01 /</span>
+              <span class="section-label">Overview</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">Why this project existed</h2>
+              <p class="section-sub">
+                The Knowledge Hub was not created as a visual exercise.
+                It was created to solve an operational weakness: important know-how was difficult to retain, transfer, and reuse.
+              </p>
+            </div>
+          </div>
+
+          <div class="detail-grid">
+            <div class="detail-card">
+              <div class="detail-card-label">Context</div>
+              <p>
+                In HR work, many processes are highly dependent on experience.
+                Project logic, system settings, file paths, template usage, and execution rhythm often stay fragmented across folders,
+                people, and memory. That makes onboarding slow and handover risky.
+              </p>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-card-label">Core Problem</div>
+              <ul class="detail-list">
+                <li>Project knowledge depended too heavily on individuals</li>
+                <li>SOPs and templates were hard to locate and connect</li>
+                <li>Operational logic was not visible enough for successors</li>
+                <li>Different HR audiences needed different entry points into the same knowledge base</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="design">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">02 /</span>
+              <span class="section-label">Design</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">How I designed the solution</h2>
+              <p class="section-sub">
+                I approached the Hub as an internal product, not just a documentation folder.
+                The goal was to make complex HR knowledge easier to browse, understand, and continue.
+              </p>
+            </div>
+          </div>
+
+          <div class="detail-grid">
+            <div class="detail-card">
+              <div class="detail-card-label">Solution Logic</div>
+              <ul class="detail-list">
+                <li>Used static HTML/CSS so the site could run in a lightweight internal environment</li>
+                <li>Separated homepage, project pages, and system pages to reflect different user needs</li>
+                <li>Built reusable page structures so future content could be added without redesigning everything</li>
+                <li>Made navigation obvious enough that a new user could understand where to start</li>
+              </ul>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-card-label">Architecture Thinking</div>
+              <ul class="detail-list">
+                <li><strong>Project-based structure:</strong> annual performance, promotion, templates, and SOP flows</li>
+                <li><strong>Audience-based thinking:</strong> operation-oriented HR and system-oriented HRIS need different perspectives</li>
+                <li><strong>Timeline-based pages:</strong> users understand not only what exists, but when and why it matters</li>
+                <li><strong>Scalable page hierarchy:</strong> each project can keep expanding without breaking the whole site</li>
+              </ul>
+            </div>
+
+            <div class="detail-card detail-card-wide">
+              <div class="detail-card-label">What this project really reflects</div>
+              <p>
+                This project is less about front-end development itself and more about
+                <strong>system thinking applied to HR operations</strong>.
+                The actual value is in translating tacit knowledge into visible structure:
+                deciding how content should be grouped, how users should enter, what sequence supports understanding,
+                and how to reduce dependency on the person who originally built the process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="impact">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">03 /</span>
+              <span class="section-label">Impact</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">What changed because of it</h2>
+              <p class="section-sub">
+                The value of the Hub is not only better documentation.
+                It is the reduction of ambiguity, dependency, and invisible operational logic.
+              </p>
+            </div>
+          </div>
+
+          <div class="impact-grid">
+            <div class="impact-card">
+              <div class="impact-num">01 —</div>
+              <div class="impact-title">Clearer Handover</div>
+              <div class="impact-body">
+                Knowledge became less dependent on verbal explanation and more reusable through structured pages.
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-num">02 —</div>
+              <div class="impact-title">Faster Orientation</div>
+              <div class="impact-body">
+                New HR members could understand project rhythm, system logic, and template usage more quickly.
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-num">03 —</div>
+              <div class="impact-title">More Scalable Operations</div>
+              <div class="impact-body">
+                The project created a foundation that can keep expanding as more SOPs, systems, and modules are added.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reflection">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">04 /</span>
+              <span class="section-label">Reflection</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">What I learned from building it</h2>
+              <p class="section-sub">
+                This project changed the way I think about HR work.
+                It pushed me further from pure execution and closer to designing systems that other people can reliably operate.
+              </p>
+            </div>
+          </div>
+
+          <div class="detail-grid">
+            <div class="detail-card detail-card-wide">
+              <div class="detail-card-label">Reflection</div>
+              <p>
+                Before this project, I was mostly solving issues as they appeared.
+                Building the Knowledge Hub made me think more deeply about
+                <strong>how work should be made understandable, transferable, and sustainable</strong>.
+                It reinforced my interest in roles that sit between HR operations, systems, and product-like internal design.
+                In other words, I was no longer only asking how to finish the work —
+                I was asking how to design the environment so that the work can continue well even without me.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="contact-wrap">
+            <div class="contact-top">
+              <div class="contact-text">
+                <h2 class="contact-title">More projects are coming.</h2>
+                <p>
+                  This page is part of a broader portfolio around HR systems, internal frameworks,
+                  analytics, and scalable people operations. The same structure can be extended to
+                  other projects such as calibration design, promotion workflow, and HR dashboard logic.
+                </p>
+              </div>
+
+              <div class="contact-links">
+                <a class="contact-link" href="../../index.html">Back to Home</a>
+                <a class="contact-link" href="mailto:jack118699@gmail.com">Email</a>
+                <a class="contact-link" href="https://github.com/Chen-WEI-HSIANG-Web" target="_blank">GitHub</a>
+              </div>
+            </div>
+
+            <div class="contact-note">
+              Based in Taiwan · Interested in HR systems, internal platforms, knowledge design, and people analytics.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-logo">Jack</div>
+        <div>© 2026 — HR × Systems × Data</div>
+      </div>
+    </footer>
   </div>
-
-  <!-- Context -->
-  <h2>Context</h2>
-  <div class="box">
-    <p>
-      In HR operations, knowledge is often scattered across individuals, documents, and informal communication.
-      When key people leave or projects hand over, critical information is lost or requires significant effort to reconstruct.
-    </p>
-  </div>
-
-  <!-- Problem -->
-  <h2>Problem</h2>
-  <div class="box">
-    <ul>
-      <li>HR project knowledge depends on individuals</li>
-      <li>SOPs are fragmented and hard to navigate</li>
-      <li>New HR members require long onboarding time</li>
-      <li>No centralized system for process visibility</li>
-    </ul>
-  </div>
-
-  <!-- Solution -->
-  <h2>Solution</h2>
-  <div class="box">
-    <p>
-      Designed and built a static HTML-based knowledge platform that organizes HR processes,
-      project timelines, system logic, and templates into a structured, easy-to-navigate system.
-    </p>
-  </div>
-
-  <!-- System Design -->
-  <h2>System Design</h2>
-  <div class="box">
-    <p class="highlight">Key design thinking:</p>
-    <ul>
-      <li>Project-based navigation (Performance / Promotion)</li>
-      <li>Role-based perspective (HRBP / HRIS)</li>
-      <li>Timeline-driven SOP structure</li>
-      <li>Modular page design for scalability</li>
-    </ul>
-  </div>
-
-  <!-- Impact -->
-  <h2>Impact</h2>
-  <div class="box">
-    <ul>
-      <li>Reduced onboarding dependency on senior HR</li>
-      <li>Improved knowledge accessibility</li>
-      <li>Standardized HR project execution framework</li>
-    </ul>
-  </div>
-
-  <!-- Reflection -->
-  <h2>Reflection</h2>
-  <div class="box">
-    <p>
-      This project shifted my perspective from executing HR processes to designing systems.
-      Instead of focusing on completing tasks, I began focusing on building structures that allow
-      others to execute consistently without relying on tacit knowledge.
-    </p>
-  </div>
-
-</div>
-
 </body>
 </html>
