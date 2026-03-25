@@ -287,22 +287,25 @@
 
     .summary-card,
     .detail-card,
+    .impact-card,
+    .arch-card,
+    .demo-card,
     .contact-wrap {
       background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,244,238,0.9) 100%);
       border: 1px solid var(--border);
       border-radius: 26px;
-    }
-
-    .summary-card,
-    .detail-card {
       box-shadow: var(--shadow);
     }
 
-    .summary-card {
-      padding: 22px;
+    .summary-card,
+    .detail-card,
+    .arch-card,
+    .demo-card {
+      padding: 28px;
     }
 
-    .summary-label {
+    .summary-label,
+    .demo-label {
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -394,15 +397,14 @@
       gap: 24px;
     }
 
-    .detail-card {
-      padding: 32px;
-    }
-
-    .detail-card-wide {
+    .detail-card-wide,
+    .arch-card-wide,
+    .demo-card-wide {
       grid-column: 1 / -1;
     }
 
-    .detail-card-label {
+    .detail-card-label,
+    .arch-card-label {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -414,7 +416,8 @@
       margin-bottom: 18px;
     }
 
-    .detail-card-label::after {
+    .detail-card-label::after,
+    .arch-card-label::after {
       content: "";
       flex: 1;
       height: 1px;
@@ -422,25 +425,152 @@
     }
 
     .detail-card p,
-    .detail-card li {
+    .detail-card li,
+    .arch-card p,
+    .arch-card li,
+    .demo-card p {
       font-size: 15px;
       color: var(--ink-mid);
     }
 
-    .detail-card strong {
+    .detail-card strong,
+    .arch-card strong,
+    .demo-card strong {
       color: var(--ink);
       font-weight: 600;
     }
 
-    .detail-list {
+    .detail-list,
+    .arch-list {
       display: flex;
       flex-direction: column;
       gap: 14px;
       padding-left: 20px;
     }
 
-    .detail-list li {
+    .detail-list li,
+    .arch-list li {
       margin-left: 4px;
+    }
+
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .arch-card {
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .arch-card:hover {
+      background: #fbf7f2;
+      transform: translateY(-2px);
+    }
+
+    .arch-step {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 15px;
+      color: var(--ink-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .arch-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 26px;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .arch-body {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.75;
+    }
+
+    .tree-wrap {
+      background: #fbf8f4;
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+      padding: 22px 24px;
+      margin-top: 18px;
+      overflow-x: auto;
+    }
+
+    .tree-code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.9;
+      white-space: pre;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+    }
+
+    .demo-card {
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .demo-card:hover {
+      background: #fbf7f2;
+      transform: translateY(-2px);
+    }
+
+    .demo-preview-box {
+      min-height: 300px;
+      border-radius: 22px;
+      border: 1px dashed #cfbfaf;
+      background:
+        linear-gradient(135deg, rgba(33,77,114,0.08), rgba(201,134,107,0.12)),
+        #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px;
+    }
+
+    .demo-preview-box svg {
+      margin-bottom: 14px;
+      opacity: 0.45;
+    }
+
+    .demo-preview-box h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .demo-preview-box p {
+      max-width: 420px;
+      font-size: 14px;
+      color: var(--ink-light);
+      line-height: 1.8;
+    }
+
+    .demo-note-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .demo-note-item {
+      padding: 14px 16px;
+      background: #fbf8f4;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      font-size: 14px;
+      color: var(--ink-mid);
     }
 
     .impact-grid {
@@ -450,11 +580,7 @@
     }
 
     .impact-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,244,238,0.9) 100%);
-      border: 1px solid var(--border);
-      border-radius: 26px;
       padding: 28px;
-      box-shadow: var(--shadow);
       transition: background 0.2s ease, transform 0.2s ease;
     }
 
@@ -581,6 +707,8 @@
     .hero-actions,
     .summary-card,
     .detail-card,
+    .arch-card,
+    .demo-card,
     .impact-card,
     .contact-wrap {
       opacity: 0;
@@ -598,15 +726,20 @@
     #overview .detail-card:nth-child(1) { animation-delay: 0.34s; }
     #overview .detail-card:nth-child(2) { animation-delay: 0.40s; }
 
-    #design .detail-card:nth-child(1) { animation-delay: 0.46s; }
-    #design .detail-card:nth-child(2) { animation-delay: 0.52s; }
+    #architecture .arch-card:nth-child(1) { animation-delay: 0.46s; }
+    #architecture .arch-card:nth-child(2) { animation-delay: 0.52s; }
+    #architecture .arch-card:nth-child(3) { animation-delay: 0.58s; }
+    #architecture .arch-card:nth-child(4) { animation-delay: 0.64s; }
 
-    #impact .impact-card:nth-child(1) { animation-delay: 0.58s; }
-    #impact .impact-card:nth-child(2) { animation-delay: 0.64s; }
-    #impact .impact-card:nth-child(3) { animation-delay: 0.70s; }
+    #demo .demo-card:nth-child(1) { animation-delay: 0.70s; }
+    #demo .demo-card:nth-child(2) { animation-delay: 0.76s; }
 
-    #reflection .detail-card { animation-delay: 0.76s; }
-    #contact .contact-wrap { animation-delay: 0.82s; }
+    #impact .impact-card:nth-child(1) { animation-delay: 0.82s; }
+    #impact .impact-card:nth-child(2) { animation-delay: 0.88s; }
+    #impact .impact-card:nth-child(3) { animation-delay: 0.94s; }
+
+    #reflection .detail-card { animation-delay: 1.00s; }
+    #contact .contact-wrap { animation-delay: 1.06s; }
 
     @media (prefers-reduced-motion: reduce) {
       .eyebrow,
@@ -617,6 +750,8 @@
       .hero-actions,
       .summary-card,
       .detail-card,
+      .arch-card,
+      .demo-card,
       .impact-card,
       .contact-wrap {
         opacity: 1;
@@ -627,6 +762,8 @@
     @media (max-width: 1280px) {
       .hero-card,
       .detail-grid,
+      .architecture-grid,
+      .demo-grid,
       .contact-top,
       .impact-grid {
         grid-template-columns: 1fr;
@@ -665,6 +802,8 @@
       .hero-card,
       .summary-card,
       .detail-card,
+      .arch-card,
+      .demo-card,
       .impact-card,
       .contact-wrap {
         padding: 22px;
@@ -677,6 +816,10 @@
       .hero-subtitle {
         font-size: 24px;
       }
+
+      .tree-code {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -684,13 +827,14 @@
   <div class="page-shell">
     <header class="topbar">
       <div class="container topbar-inner">
-        <a href="../../Home-index.html" class="brand">Jack</a>
+        <a href="../../index.html" class="brand">Jack</a>
 
         <nav class="nav">
           <a href="#overview">Overview</a>
-          <a href="#design">Design</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#demo">Demo</a>
           <a href="#impact">Impact</a>
-          <a href="../../Home-index.html" class="nav-cta">Back Home</a>
+          <a href="../../index.html" class="nav-cta">Back Home</a>
         </nav>
       </div>
     </header>
@@ -709,10 +853,10 @@
               </p>
 
               <p class="hero-desc">
-                This project started from a simple but recurring problem:
-                <strong>critical HR knowledge often lived in people, scattered files, and past conversations</strong>.
+                This project started from a recurring operational problem:
+                <strong>critical HR knowledge often lived in people, scattered folders, and past conversations</strong>.
                 I built the Knowledge Hub as a static HTML/CSS platform to organize project logic,
-                SOPs, templates, and system understanding into a structure that others could actually navigate and continue.
+                SOPs, templates, and system understanding into a structure that others could actually navigate, understand, and continue.
               </p>
 
               <div class="hero-tags">
@@ -796,53 +940,139 @@
         </div>
       </section>
 
-      <section id="design">
+      <section id="architecture">
         <div class="container">
           <div class="section-head">
             <div class="section-meta">
               <span class="section-num">02 /</span>
-              <span class="section-label">Design</span>
+              <span class="section-label">Architecture</span>
             </div>
 
             <div>
-              <h2 class="section-title">How I designed the solution</h2>
+              <h2 class="section-title">How the Hub is structured</h2>
               <p class="section-sub">
-                I approached the Hub as an internal product, not just a documentation folder.
-                The goal was to make complex HR knowledge easier to browse, understand, and continue.
+                The real value of this project is not only the page design itself, but the information architecture behind it:
+                how users enter, how content is grouped, and how the structure stays scalable as more modules are added.
               </p>
             </div>
           </div>
 
-          <div class="detail-grid">
-            <div class="detail-card">
-              <div class="detail-card-label">Solution Logic</div>
-              <ul class="detail-list">
-                <li>Used static HTML/CSS so the site could run in a lightweight internal environment</li>
-                <li>Separated homepage, project pages, and system pages to reflect different user needs</li>
-                <li>Built reusable page structures so future content could be added without redesigning everything</li>
-                <li>Made navigation obvious enough that a new user could understand where to start</li>
-              </ul>
+          <div class="architecture-grid">
+            <div class="arch-card">
+              <div class="arch-step">01 —</div>
+              <div class="arch-title">Home Entry</div>
+              <div class="arch-body">
+                The homepage acts as the main entry point, introducing the overall knowledge space and guiding users into the right path.
+              </div>
             </div>
 
-            <div class="detail-card">
-              <div class="detail-card-label">Architecture Thinking</div>
-              <ul class="detail-list">
-                <li><strong>Project-based structure:</strong> annual performance, promotion, templates, and SOP flows</li>
-                <li><strong>Audience-based thinking:</strong> operation-oriented HR and system-oriented HRIS need different perspectives</li>
-                <li><strong>Timeline-based pages:</strong> users understand not only what exists, but when and why it matters</li>
-                <li><strong>Scalable page hierarchy:</strong> each project can keep expanding without breaking the whole site</li>
-              </ul>
+            <div class="arch-card">
+              <div class="arch-step">02 —</div>
+              <div class="arch-title">Project Layer</div>
+              <div class="arch-body">
+                Project pages organize annual initiatives such as performance, promotion, templates, and timeline-driven execution logic.
+              </div>
             </div>
 
+            <div class="arch-card">
+              <div class="arch-step">03 —</div>
+              <div class="arch-title">System Layer</div>
+              <div class="arch-body">
+                System pages provide module-based guidance so users can understand functions, logic, FAQ, and operational use cases.
+              </div>
+            </div>
+
+            <div class="arch-card">
+              <div class="arch-step">04 —</div>
+              <div class="arch-title">SOP / Template Layer</div>
+              <div class="arch-body">
+                Detail pages break down execution steps, templates, and context so the knowledge is usable rather than only documented.
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-grid" style="margin-top: 24px;">
             <div class="detail-card detail-card-wide">
-              <div class="detail-card-label">What this project really reflects</div>
-              <p>
-                This project is less about front-end development itself and more about
-                <strong>system thinking applied to HR operations</strong>.
-                The actual value is in translating tacit knowledge into visible structure:
-                deciding how content should be grouped, how users should enter, what sequence supports understanding,
-                and how to reduce dependency on the person who originally built the process.
+              <div class="arch-card-label">Architecture Logic</div>
+              <ul class="arch-list">
+                <li><strong>Audience-based entry:</strong> operational HR and system-oriented HRIS do not consume knowledge in the same way</li>
+                <li><strong>Hierarchy-based grouping:</strong> home, project, system, SOP, and template pages each serve a different role</li>
+                <li><strong>Timeline-based reading:</strong> users can understand not only what exists, but when and why it matters</li>
+                <li><strong>Scalable structure:</strong> new modules can be added without breaking the consistency of the site</li>
+              </ul>
+
+              <div class="tree-wrap">
+                <div class="tree-code">Home
+├─ Project Home
+│  ├─ Annual Performance
+│  ├─ Annual Promotion
+│  ├─ SOP Pages
+│  └─ Template Guide Pages
+└─ System Home
+   ├─ Employee Central
+   ├─ Performance & Goals
+   ├─ FAQ Pages
+   └─ Module Explanation Pages</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-meta">
+              <span class="section-num">03 /</span>
+              <span class="section-label">Demo</span>
+            </div>
+
+            <div>
+              <h2 class="section-title">Preview and future demo space</h2>
+              <p class="section-sub">
+                This section is reserved for turning the project from description into evidence.
+                As the Knowledge Hub becomes more complete, this page can include visual previews, walkthroughs, and a live demo entry.
               </p>
+            </div>
+          </div>
+
+          <div class="demo-grid">
+            <div class="demo-card">
+              <div class="demo-label">Preview Reserved</div>
+              <div class="demo-preview-box">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+                  <path d="M8 20h8"></path>
+                  <path d="M12 18v2"></path>
+                </svg>
+                <h3>Demo Area</h3>
+                <p>
+                  Future versions can place screenshots, selected module previews,
+                  or an entry button to a demo version of the actual Knowledge Hub here.
+                </p>
+              </div>
+            </div>
+
+            <div class="demo-card">
+              <div class="demo-label">Planned Showcase</div>
+              <div class="demo-note-list">
+                <div class="demo-note-item">
+                  <strong>Live Demo Entry</strong><br />
+                  A clickable entrance to the actual Knowledge Hub when the structure is mature enough to present externally.
+                </div>
+                <div class="demo-note-item">
+                  <strong>Selected Screens</strong><br />
+                  Preview cards for homepage, project pages, SOP pages, and system module pages.
+                </div>
+                <div class="demo-note-item">
+                  <strong>Before / After Logic</strong><br />
+                  Show how fragmented folder-based knowledge evolved into a clearer, more navigable structure.
+                </div>
+                <div class="demo-note-item">
+                  <strong>Module Walkthrough</strong><br />
+                  A brief guided explanation of how different users move through the Hub based on their needs.
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -852,7 +1082,7 @@
         <div class="container">
           <div class="section-head">
             <div class="section-meta">
-              <span class="section-num">03 /</span>
+              <span class="section-num">04 /</span>
               <span class="section-label">Impact</span>
             </div>
 
@@ -897,7 +1127,7 @@
         <div class="container">
           <div class="section-head">
             <div class="section-meta">
-              <span class="section-num">04 /</span>
+              <span class="section-num">05 /</span>
               <span class="section-label">Reflection</span>
             </div>
 
@@ -918,7 +1148,7 @@
                 Building the Knowledge Hub made me think more deeply about
                 <strong>how work should be made understandable, transferable, and sustainable</strong>.
                 It reinforced my interest in roles that sit between HR operations, systems, and product-like internal design.
-                In other words, I was no longer only asking how to finish the work —
+                I was no longer only asking how to finish the work —
                 I was asking how to design the environment so that the work can continue well even without me.
               </p>
             </div>
